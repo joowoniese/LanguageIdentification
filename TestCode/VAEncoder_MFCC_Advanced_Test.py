@@ -101,15 +101,6 @@ def extract_latent_space(encoder, test_dataloader, save_latent_dir, file_names, 
     return latent_space
 
 def visualize_latent_space(latent_space, labels, save_latent_dir, label_mapping):
-    """
-    Latent space를 시각화하고 레전드에 언어 이름을 표시합니다.
-
-    Args:
-        latent_space (np.ndarray): Latent space 좌표 (2D).
-        labels (np.ndarray): 데이터의 레이블 배열.
-        save_latent_dir (str): 시각화 결과 저장 경로.
-        label_mapping (dict): 레이블 번호와 이름의 매핑 (e.g., {0: "Chinese", 1: "French", ...}).
-    """
     tsne = TSNE(n_components=2, random_state=42)
     latents_2d = tsne.fit_transform(latent_space)
 
