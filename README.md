@@ -1,9 +1,9 @@
 # Automatic Spoken Language Identification Model (End-to-End Language Identification Model)
-A model designed to identify languages by capturing speech features solely from audio data
-
+### A model designed to identify languages by capturing speech features solely from audio data
+![Architecture](https://github.com/joowoniese/LanguageIdentification/blob/main/ModelInfo/language_fullarchitecture.drawio%20(4).png)
 ---
 
-### 1. Virtual Environment Setup
+## Virtual Environment Setup
 * create virtual envs
 ```
 conda create -n langaugeIdentification python==3.9
@@ -20,7 +20,7 @@ pip install -r requirements.txt
 cd ./LanguageIdentification
 ```
 ## Model Test
-### Language Classifier Test
+### 1. Language Classifier Test
 ```
 python ./TrainCode/Classifier_Advanced_Test.py
 ```
