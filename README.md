@@ -104,7 +104,7 @@ Spanish - [Spanish Single Speaker Speech Dataset](https://www.kaggle.com/dataset
 
 French - [French Single Speaker Speech Dataset](https://www.kaggle.com/datasets/bryanpark/french-single-speaker-speech-dataset)
 
-* Dowmload code
+* Download code
 ```
 import kagglehub
 import shutil
