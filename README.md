@@ -1,18 +1,18 @@
 # Language Identification
 오직 음성 데이터를 사용해서 음성 특징을 포착하여 언어를 식별하는 모델
 
-## Setting
-----
-### 1. 가상환경 라이브러리 및 패키지 설치
-* 가상환경 생성
+---
+
+### 1. Virtual Environment Setup
+* create virtual envs
 ```
 conda create -n langaugeIdentification python==3.9
 ```
-* 가상환경 활성화
+* activate virtual envs
 ```
 conda activate langaugeIdentification
 ```
-* 라이브러리 및 패키지 설치
+* install packages/librarys
 ```
 pip install -r requirements.txt
 ```
@@ -27,15 +27,15 @@ python ./TrainCode/Classifier_Advanced_Test.py
 
 
 ## Model Train
-### 1. Pre-trained Wav2Vec 실행
+### 1. Run Pre-trained Wav2Vec 
 ```
 python ./TrainCode/wav2vec.py
 ```
-### 2. Customed VAE 학습
+### 2. Train Customed VAE
 ```
 python ./TrainCode/VAEncoder_MFCC_Advanced.py
 ```
-### 3. Classifier VAE 학습
+### 3. Train Classifier VAE
 ```
 python ./TrainCode/Classifier_Advanced.py
 ```
