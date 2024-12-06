@@ -103,3 +103,21 @@ Japanese - [Japanese Single Speaker Speech Dataset](https://www.kaggle.com/datas
 Spanish - [Spanish Single Speaker Speech Dataset](https://www.kaggle.com/datasets/bryanpark/spanish-single-speaker-speech-dataset)
 
 French - [French Single Speaker Speech Dataset](https://www.kaggle.com/datasets/bryanpark/french-single-speaker-speech-dataset)
+
+* Dowmload code
+```
+import kagglehub
+import shutil
+import os
+
+dataset_id = "bryanpark/chinese-single-speaker-speech-dataset"
+default_path = kagglehub.dataset_download(dataset_id)
+
+target_dir = "/hdd_ext/hdd3/joowoniese/languageRecognition/"
+
+if os.path.exists(default_path):
+    shutil.move(default_path, target_dir)
+
+print(f"Dataset moved to: {target_dir}")
+```
+
