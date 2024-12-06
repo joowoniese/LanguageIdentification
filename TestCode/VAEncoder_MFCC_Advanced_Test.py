@@ -136,9 +136,9 @@ def visualize_latent_space(latent_space, labels, save_latent_dir, label_mapping)
 
 if __name__ == "__main__":
     # 설정
-    model_path = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/VAE_Model/VAEncoder_epoch30_batch64/final_model.pth"
-    test_dir = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/Test/numpyfiles/"
-    save_latent_dir = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/Test/vae_latent/"
+    model_path = "../Models/VAE/VAEncoder_epoch30_batch64/final_model.pth"
+    test_dir = "../dataset/Test/MFCCs/"
+    save_latent_dir = "../dataset/Test/vae_latent/"
 
     batch_size = 32
 
