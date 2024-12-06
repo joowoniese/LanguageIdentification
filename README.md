@@ -1,5 +1,5 @@
-# Language Identification
-오직 음성 데이터를 사용해서 음성 특징을 포착하여 언어를 식별하는 모델
+# Automatic Spoken Language Identification Model (End-to-End Language Identification Model)
+A model designed to identify languages by capturing speech features solely from audio data
 
 ---
 
