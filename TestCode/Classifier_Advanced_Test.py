@@ -102,9 +102,9 @@ class LanguageDataset(Dataset):
 
 
 # 데이터 경로 설정
-wav2vec_features_path = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/Test/wav2vec_featuredata/audio_features.npy"
-encoder_features_dir = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/Test/vae_latent/"
-labels_path = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/Test/wav2vec_featuredata/audio_labels.csv"
+wav2vec_features_path = "../dataset/Test/wav2vec_featuredata/audio_features.npy"
+encoder_features_dir = "../dataset/Test/vae_latent/"
+labels_path = "../dataset/Test/wav2vec_featuredata/audio_labels.csv"
 
 # 테스트 데이터셋 및 데이터 로더 생성
 test_dataset = LanguageDataset(wav2vec_features_path, encoder_features_dir, labels_path)
@@ -116,8 +116,7 @@ hidden_dim = 128
 num_classes = len(test_dataset.label_to_idx)
 
 classifier = Classifier(input_dim, hidden_dim, num_classes).to(device)
-# model_path = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/classifier_Model/kfold_epoch50_batch32/classifier_model_fold5.pth"
-model_path = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/classifier_Model/kfold_epoch50_batch32/classifier_model_fold3.pth"
+model_path = "../Models/Classifier/kfold_epoch50_batch32/classifier_model_fold3.pth"
 classifier.load_state_dict(torch.load(model_path))
 classifier.eval()
 
