@@ -1,8 +1,8 @@
 # LanguageIdentification
 
 ## Dataset
-ㄴKorean
-ㄴJapanese
-ㄴFrench
-ㄴChinese
-ㄴSpanish
+ㄴKorean \n
+ㄴJapanese \n
+ㄴFrench \n
+ㄴChinese \n
+ㄴSpanish \n
