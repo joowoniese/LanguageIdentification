@@ -19,6 +19,26 @@ pip install -r requirements.txt
 ```
 cd ./LanguageIdentification
 ```
+
+## Preprocessed Train data download
+[Preprocessed Train data download link](https://drive.google.com/file/d/1pqDuAu3XtLFGWro0-dIOe5nYa_ti1ZEh/view?usp=sharing)
+
+Download the file below and place it as shown below.
+```
+/LanguageIdentification/dataset/
+├── Train/
+│   ├── wav2vec_featuredata/
+│   │   ├── audio_features.npy
+│   │   ├── file_names.npy
+│   │   └── audio_labels.csv
+│   ├── vae_latent/
+│   │   ├── latent_vectors.npy
+│   │   └── file_names.npy
+│   └── MFCCs/
+└──     └── mfccs.npy
+
+```
+
 ## Model Test
 ### 1. Language Classifier Test
 ```
