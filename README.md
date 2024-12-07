@@ -4,20 +4,18 @@
 ---
 
 ## Virtual Environment Setup
-* create virtual envs
+Conda
 ```
+# clone project
+git clone https://github.com/joowoniese/LanguageIdentification.git
+cd LanguageIdentification
+
+# create conda environment
 conda create -n langaugeIdentification python==3.9
-```
-* activate virtual envs
-```
 conda activate langaugeIdentification
-```
-* install packages/librarys
-```
+
+# install packages/librarys
 pip install -r requirements.txt
-```
-```
-cd ./LanguageIdentification
 ```
 
 ## Preprocessed Train data download
