@@ -123,7 +123,7 @@ true_labels = []
 file_names = []
 
 with torch.no_grad():
-    for inputs, targets, files in test_loader:  # 수정된 __getitem__으로 3개 값 반환
+    for inputs, targets, files in test_loader:
         inputs, targets = inputs.to(device), targets.to(device)
         outputs = classifier(inputs)
         loss = criterion(outputs, targets)
