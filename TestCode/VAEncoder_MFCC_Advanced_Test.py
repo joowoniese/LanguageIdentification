@@ -8,12 +8,9 @@ import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 #  wav2vec_vocoder import features
 
-# GPU 설정
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-# 모델 정의 (Encoder만 필요)
 class Encoder(nn.Module):
     def __init__(self, input_dim, hidden_dim, latent_dim):
         super(Encoder, self).__init__()
@@ -78,7 +75,6 @@ def load_encoder(model_path, input_dim, hidden_dim, latent_dim, device):
 def extract_latent_space(encoder, test_dataloader, save_latent_dir, file_names, labels, device="cuda"):
     device = torch.device(device if torch.cuda.is_available() else "cpu")
 
-    # Latent Space 추출
     print("Extracting Latent Space...")
     latent_space = []
     with torch.no_grad():
@@ -91,7 +87,6 @@ def extract_latent_space(encoder, test_dataloader, save_latent_dir, file_names, 
     # Flatten the latent space features
     latent_space = np.vstack(latent_space)
 
-    # 저장
     os.makedirs(save_latent_dir, exist_ok=True)
     np.save(os.path.join(save_latent_dir, "latent_vectors.npy"), latent_space)
     np.save(os.path.join(save_latent_dir, "true_labels.npy"), labels)
@@ -126,22 +121,18 @@ def visualize_latent_space(latent_space, labels, save_latent_dir, label_mapping)
     print(f"Latent space plot saved to {save_path}")
 
 if __name__ == "__main__":
-    # 설정
     model_path = "../Models/VAE/VAEncoder_epoch30_batch64/final_model.pth"
     test_dir = "../dataset/Test/MFCCs/"
     save_latent_dir = "../dataset/Test/vae_latent/"
 
     batch_size = 32
 
-    # 모델 및 데이터 로드
     test_dataloader, features, labels, file_names, label_mapping = load_test_data(test_dir, batch_size)
-    input_dim = features.shape[1]  # 기존 모델의 입력 차원
+    input_dim = features.shape[1]  
     hidden_dim = 128
     latent_dim = 16
     encoder = load_encoder(model_path, input_dim, hidden_dim, latent_dim, device="cuda")
 
-    # Latent Space 추출
     latent_space = extract_latent_space(encoder, test_dataloader, save_latent_dir, file_names, labels, device="cuda")
 
-    # Latent Space 시각화
     visualize_latent_space(latent_space, labels, save_latent_dir, label_mapping)
