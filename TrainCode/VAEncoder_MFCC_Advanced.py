@@ -9,17 +9,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 
-# GPU 설정
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-# 데이터 전처리 함수
 def normalize(data):
     return (data - data.min(axis=0)) / (data.max(axis=0) - data.min(axis=0) + 1e-8)
 
-
-# 데이터 로드 및 병합
 def load_and_merge_data_from_dirs(base_dir):
     features = []
     labels = []
@@ -42,8 +37,6 @@ def load_and_merge_data_from_dirs(base_dir):
     labels = np.array(labels)
     return normalize(features), labels, label_mapping
 
-
-# 하이퍼파라미터
 num_batch = 64
 base_dir = "/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/Train/numpyfiles/"
 features, all_labels, label_mapping = load_and_merge_data_from_dirs(base_dir)
@@ -52,7 +45,6 @@ labels_tensor = torch.tensor(all_labels, dtype=torch.long)
 dataset = TensorDataset(features_tensor, labels_tensor)
 dataloader = DataLoader(dataset, batch_size=num_batch, shuffle=True)
 
-# 모델 정의
 class Encoder(nn.Module):
     def __init__(self, input_dim, hidden_dim, latent_dim):
         super(Encoder, self).__init__()
@@ -87,7 +79,6 @@ class Decoder(nn.Module):
         return out
 
 
-# 손실 함수 정의
 def reconstruction_loss(recon_x, x):
     return F.binary_cross_entropy(recon_x, x, reduction='mean')
 
@@ -98,16 +89,15 @@ def kl_divergence(mu, logvar):
 
 
 def weights_init(m):
-    if isinstance(m, nn.Linear):  # Linear 계층에 대해 He 초기화 적용
+    if isinstance(m, nn.Linear): 
         nn.init.kaiming_uniform_(m.weight, nonlinearity='relu')
         if m.bias is not None:
             nn.init.zeros_(m.bias)
-    elif isinstance(m, nn.BatchNorm1d):  # BatchNorm 계층 초기화
+    elif isinstance(m, nn.BatchNorm1d): 
         nn.init.ones_(m.weight)
         nn.init.zeros_(m.bias)
 
 
-# 모델 초기화
 input_dim = features.shape[1]
 hidden_dim = 128
 latent_dim = 16
@@ -119,15 +109,13 @@ decoder.apply(weights_init)
 
 optimizer = optim.Adam(list(encoder.parameters()) + list(decoder.parameters()), lr=1e-4)
 
-# 학습 파라미터
 num_epochs = 30
-beta = 0.5  # KL 손실 가중치
+beta = 0.5 
 log_dir = f"/hdd_ext/hdd3/joowoniese/languageRecognition/dataset/VAE_Model/VAEncoder_epoch{num_epochs}_batch{num_batch}"
 os.makedirs(log_dir, exist_ok=True)
 
 loss_log = []
 
-# 학습 루프
 for epoch in range(num_epochs):
     encoder.train()
     decoder.train()
@@ -156,18 +144,15 @@ for epoch in range(num_epochs):
     loss_log.append({'epoch': epoch + 1, 'loss': epoch_loss})
     print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {epoch_loss:.6f}")
 
-# 모델 저장
 final_model_path = os.path.join(log_dir, "final_model.pth")
 torch.save({'encoder': encoder.state_dict(), 'decoder': decoder.state_dict()}, final_model_path)
 print(f"Final VAE model saved at: {final_model_path}")
 
-# 손실 로그 저장
 loss_df = pd.DataFrame(loss_log)
 loss_csv_path = os.path.join(log_dir, f"VAE_loss_epoch{num_epochs}_batch{num_batch}.csv")
 loss_df.to_csv(loss_csv_path, index=False)
 print(f"Loss log saved to {loss_csv_path}")
 
-# 손실 플롯 저장
 plt.figure(figsize=(10, 6))
 plt.plot(loss_df['epoch'], loss_df['loss'], marker='o', label='Loss')
 plt.xlabel('Epoch')
@@ -180,7 +165,6 @@ plt.savefig(loss_plot_path)
 plt.show()
 print(f"Loss plot saved to {loss_plot_path}")
 
-# Latent Space 시각화
 encoder.eval()
 all_latents = []
 all_labels_list = []
@@ -195,11 +179,9 @@ with torch.no_grad():
 all_latents = np.vstack(all_latents)
 all_labels_array = np.array(all_labels_list)
 
-# t-SNE 차원 축소
 tsne = TSNE(n_components=2, random_state=42)
 latents_2d = tsne.fit_transform(all_latents)
 
-# 시각화
 plt.figure(figsize=(10, 8))
 for language_name, label_idx in label_mapping.items():
     plt.scatter(
