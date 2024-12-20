@@ -1,5 +1,10 @@
 # Automatic Spoken Language Identification Model (End-to-End Language Identification Model)
 ### A model designed to identify languages by capturing speech features solely from audio data
+
+
+More Information about this model, Check [paper](https://github.com/joowoniese/LanguageIdentification/blob/main/ModelInfo/LanguageIdentifications.pdf)
+
+
 ![Architecture](https://github.com/joowoniese/LanguageIdentification/blob/main/ModelInfo/language_fullarchitecture.drawio%20(4).png)
 ---
 
