@@ -77,6 +77,35 @@ pip install -r requirements.txt
 
 ---
 
+## 🗂️ Dataset Directory Structure
+
+Download the Preprocessed Training Vectors and map files within your active directory as detailed below:
+```bash
+/LanguageIdentification/dataset/
+├── Train/
+│   ├── wav2vec_featuredata/       # Extracted self-supervised features
+│   │   ├── audio_features.npy
+│   │   ├── file_names.npy
+│   │   └── audio_labels.csv
+│   ├── vae_latent/                # Encoded VAE target properties
+│   │   ├── latent_vectors.npy
+│   │   └── file_names.npy
+│   ├── MFCCs/                     # Ground acoustic feature arrays
+│   │   └── mfccs.npy
+│   ├── spanish/                   # Raw audio archives (.wav)
+│   ├── korean/
+│   ├── japanese/
+│   ├── french/
+│   └── chinese/ (Augmented)
+└── classifier_Model/
+    └── kfold_epoch50_batch32/     # Evaluated 5-Fold cross validation weights
+        ├── classifier_model_fold1.pth
+        ├── classifier_model_fold2.pth
+        └── training_results.png
+```
+
+---
+
 #### 🗂️ Citation
 
 Oh, Joowon and Lee, Jeaho.
