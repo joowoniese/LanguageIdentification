@@ -64,7 +64,7 @@ The framework balances state-of-the-art accuracy with a miniature hardware footp
 ### Conda Installation
 ```bash
 # clone project
-git clone [https://github.com/joowoniese/LanguageIdentification.git](https://github.com/joowoniese/LanguageIdentification.git)
+git clone https://github.com/joowoniese/LanguageIdentification.git
 cd LanguageIdentification
 
 # create conda environment
@@ -73,6 +73,7 @@ conda activate langaugeIdentification
 
 # install packages/librarys
 pip install -r requirements.txt
+```
 
 ---
 
