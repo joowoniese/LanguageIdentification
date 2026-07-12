@@ -73,8 +73,9 @@ conda activate langaugeIdentification
 
 # install packages/librarys
 pip install -r requirements.txt
+'''
 
-
+---
 
 #### 🗂️ Citation
 @article{oh2025multilingual,
