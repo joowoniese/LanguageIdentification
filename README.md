@@ -75,10 +75,10 @@ conda activate langaugeIdentification
 pip install -r requirements.txt
 ```
 
-
 ---
 
-🗂️ Citation
+#### 🗂️ Citation
+
 Oh, Joowon and Lee, Jeaho. "Multilingual Mobility: Audio-Based Language ID for Automotive Systems." Applied Sciences, vol. 15, no. 16, 2025, p. 9209.
 @article{oh2025multilingual,
 title={Multilingual Mobility: Audio-Based Language ID for Automotive Systems},
